@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Firebase UMD Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <!-- Firebase Core -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
+    <!-- Realtime Database -->
+  </head>
+  <body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-indigo-600 p-4 text-white">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">My Portfolio</h1>
+        <nav>
+          <a href="index.html" class="text-white hover:text-gray-300 mx-2"
+            >Home</a
+          >
+          <a href="about.html" class="text-white hover:text-gray-300 mx-2"
+            >About</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Cover Image -->
+    <section>
+      <img
+        src="https://via.placeholder.com/1200x400"
+        alt="Cover Image"
+        class="w-full h-80 object-cover"
+      />
+    </section>
+
+    <!-- Main Content -->
+    <div class="container mx-auto p-4">
+      <h1 class="text-3xl font-bold text-center mb-8">My Projects</h1>
+
+      <!-- Portfolio Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Projects will be inserted here -->
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-600 p-4 text-white mt-8">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        get,
+      } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCqaUKNG57w8TOTMEBsOPdg5ZDJxA30MxQ",
+        authDomain: "portfolio-1ebdf.firebaseapp.com",
+        databaseURL: "https://portfolio-1ebdf-default-rtdb.firebaseio.com/",
+        projectId: "portfolio-1ebdf",
+        storageBucket: "portfolio-1ebdf.appspot.com",
+        messagingSenderId: "832624183795",
+        appId: "832624183795:web:31e20c984675c5aef62a86",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      // Get a reference to the database service
+      const database = getDatabase(app);
+
+      // Example: Fetch data from Realtime Database
+      const projectsRef = ref(database, "projects");
+
+      // Fetch the data once and display it
+      get(projectsRef).then((snapshot) => {
+        const projects = snapshot.val();
+
+        // Loop through the projects and dynamically create portfolio cards
+        for (let key in projects) {
+          const project = projects[key];
+
+          // Create the card HTML and include the project ID in the URL
+          const cardHtml = `
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+          <img src="${project.image}" alt="Project Image" class="w-full">
+          <div class="p-6">
+            <h2 class="text-xl font-semibold mb-2">${project.title}</h2>
+            <p class="text-gray-700 mb-4">${project.description}</p>
+            <!-- Link to project page with ID -->
+            <a href="project.html?id=${project.id}" class="text-indigo-500 hover:text-indigo-600 font-semibold">
+              View Details
+            </a>
+          </div>
+        </div>
+      `;
+
+          document.querySelector(".grid").innerHTML += cardHtml;
+        }
+      });
+    </script>
+  </body>
+</html>

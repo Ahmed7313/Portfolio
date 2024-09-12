@@ -1,0 +1,21 @@
+{
+    "projects": {
+      "project1": {
+        "id": "project1", 
+        "title": "Project Title 1",
+        "description": "This is a description of project 1.",
+        "content": "This is a description of project 1This is a description of project 1This is a description of project 1This is a description of project 1This is a description of project 1This is a description of project 1.",
+        "image": "https://via.placeholder.com/400x250",
+        "link": "project1.html"
+      },
+      "project2": {
+        "id": "project2", 
+        "title": "Project Title 2",
+        "description": "This is a description of project 2.",
+        "content": "This is a description of project 1This is a description of project 1This is a description of project 1This is a description of project 1This is a description of project 1This is a description of project 1.",
+        "image": "https://via.placeholder.com/400x250",
+        "link": "project2.html"
+      }
+    }
+  }
+  
