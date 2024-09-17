@@ -1,115 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ancient Crafts</title>
 
-    <!-- Firebase UMD Scripts -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <!-- Firebase Core -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
-    <!-- Realtime Database -->
-  </head>
-  <body class="bg-gray-100">
-    <!-- Header -->
-    <header class="bg-indigo-600 p-4 text-white">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold">My Portfolio</h1>
-        <nav>
-          <a href="index.html" class="text-white hover:text-gray-300 mx-2"
-            >Home</a
-          >
-          <a href="about.html" class="text-white hover:text-gray-300 mx-2"
-            >About</a
-          >
-        </nav>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" />
+
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <!-- Swiper JS for Modern Slider -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Cinzel', serif;
+    }
+    .header-bar, .footer-bar {
+      background-color: #4a2c2a; /* Darker Brown */
+    }
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    .slide-in-left {
+      animation: slideInLeft 1s ease-in-out;
+    }
+    .slide-in-right {
+      animation: slideInRight 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    /* Loader Styles */
+    #loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff url('https://i.imgur.com/LLF5iyg.gif') no-repeat center center;
+      z-index: 9999;
+    }
+    /* Button Animations */
+    .btn-animate {
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s;
+    }
+    .btn-animate::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: skewX(-45deg);
+      transition: left 0.5s;
+    }
+    .btn-animate:hover::after {
+      left: 100%;
+    }
+    /* Custom Swiper Pagination */
+    .hero-slider .swiper-pagination-bullet {
+      background: #FFC107; /* Adjust color to match your theme */
+    }
+    /* Testimonials Styling */
+    .testimonial-slide {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      position: relative;
+      /* Removed max-width and margin to allow full width within the swiper slide */
+    }
+    .testimonial-slide::before {
+      content: '\f10d';
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      font-size: 3rem;
+      color: #FFC107;
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+    }
+    .testimonial-quote {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #4a2c2a;
+      margin-bottom: 1rem;
+    }
+    .testimonial-author {
+      font-weight: bold;
+      color: #4a2c2a;
+    }
+    /* Hero Slider Navigation Arrows */
+    .hero-slider .swiper-button-next,
+    .hero-slider .swiper-button-prev {
+      color: #fff;
+    }
+    /* Removed Testimonials Navigation Arrows Styling */
+    /*
+    .testimonials-slider .swiper-button-next,
+    .testimonials-slider .swiper-button-prev {
+      color: #4a2c2a;
+    }
+    */
+    /* Artisan Card Styling */
+    .artisan-card {
+      background-color: #fff;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .artisan-card:hover {
+      transform: scale(1.05);
+    }
+    .artisan-photo {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .artisan-info {
+      padding: 1.5rem;
+    }
+    .artisan-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #4a2c2a;
+    }
+    .artisan-bio {
+      color: #555;
+      margin-top: 0.5rem;
+    }
+    .artisan-social a {
+      color: #4a2c2a;
+      margin-right: 0.5rem;
+    }
+    .artisan-social a:hover {
+      color: #FFC107;
+    }
+    /* Insights Styling */
+    .insight-item {
+      background-color: #fff;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+    .insight-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .insight-content {
+      padding: 1.5rem;
+    }
+    .insight-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #4a2c2a;
+    }
+    .insight-text {
+      color: #555;
+      margin-top: 0.5rem;
+    }
+  </style>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
+</head>
+<body class="bg-gray-100 overflow-x-hidden">
+  <!-- Loader -->
+  <div id="loader"></div>
+
+  <!-- Header -->
+  <header class="header-bar p-4 text-white fixed w-full z-50">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">
+        <i class="fas fa-ankh"></i> Ancient Crafts
+      </h1>
+      <nav class="space-x-4">
+        <a href="index.html" class="hover:text-gray-300">Home</a>
+        <a href="about.html" class="hover:text-gray-300">About</a>
+        <a href="contact.html" class="hover:text-gray-300">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative pt-24">
+    <div class="swiper-container hero-slider h-screen">
+      <div class="swiper-wrapper">
+        <!-- Slides will be inserted dynamically -->
       </div>
-    </header>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next hero-next"></div>
+      <div class="swiper-button-prev hero-prev"></div>
+    </div>
+  </section>
 
-    <!-- Cover Image -->
-    <section>
-      <img
-        src="https://via.placeholder.com/1200x400"
-        alt="Cover Image"
-        class="w-full h-80 object-cover"
-      />
-    </section>
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-16">
+    <h2 class="text-4xl font-bold text-center mb-12">Our Crafts</h2>
+    <!-- Crafts Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="crafts-grid">
+      <!-- Craft items will be inserted dynamically -->
+    </div>
+  </main>
 
-    <!-- Main Content -->
-    <div class="container mx-auto p-4">
-      <h1 class="text-3xl font-bold text-center mb-8">My Projects</h1>
-
-      <!-- Portfolio Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Projects will be inserted here -->
+  <!-- Testimonials Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12">Testimonials</h2>
+      <div class="swiper-container testimonials-slider">
+        <div class="swiper-wrapper" id="testimonials-slider">
+          <!-- Testimonial Slides will be inserted dynamically -->
+        </div>
+        <!-- Navigation Arrows Removed -->
+        <!--
+        <div class="swiper-button-next testimonials-next"></div>
+        <div class="swiper-button-prev testimonials-prev"></div>
+        -->
       </div>
     </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="bg-indigo-600 p-4 text-white mt-8">
-      <div class="container mx-auto text-center">
-        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
+  <!-- Featured Artisans Section -->
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12">Featured Artisans</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="artisans-grid">
+        <!-- Artisan profiles will be inserted dynamically -->
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <!-- Firebase SDK -->
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-      import {
-        getDatabase,
-        ref,
-        get,
-      } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+  <!-- Cultural Insights Section -->
+  <section class="bg-gray-100 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-12">Cultural Insights</h2>
+      <div class="space-y-8" id="insights-list">
+        <!-- Insights will be inserted dynamically -->
+      </div>
+    </div>
+  </section>
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyCqaUKNG57w8TOTMEBsOPdg5ZDJxA30MxQ",
-        authDomain: "portfolio-1ebdf.firebaseapp.com",
-        databaseURL: "https://portfolio-1ebdf-default-rtdb.firebaseio.com/",
-        projectId: "portfolio-1ebdf",
-        storageBucket: "portfolio-1ebdf.appspot.com",
-        messagingSenderId: "832624183795",
-        appId: "832624183795:web:31e20c984675c5aef62a86",
-      };
+  <!-- Footer -->
+  <footer class="footer-bar p-6 text-white">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <p>&copy; 2024 Ancient Crafts. All rights reserved.</p>
+      <div class="mt-4 md:mt-0 space-x-4">
+        <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="hover:text-gray-300"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+  <!-- Firebase and Swiper JS -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
 
-      // Get a reference to the database service
-      const database = getDatabase(app);
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "portfolio-1ebdf.firebaseapp.com",
+      databaseURL: "https://portfolio-1ebdf-default-rtdb.firebaseio.com/",
+      projectId: "portfolio-1ebdf",
+      storageBucket: "portfolio-1ebdf.appspot.com",
+      messagingSenderId: "832624183795",
+      appId: "YOUR_APP_ID",
+    };
 
-      // Example: Fetch data from Realtime Database
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Hide Loader After Page Load
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      loader.style.display = 'none';
+    });
+
+    // Load Hero Slider Images
+    function loadHeroSlider() {
+      const headerRef = ref(database, 'projects/header_images');
+      get(headerRef).then((snapshot) => {
+        if (snapshot.exists()) {
+          const headerImages = snapshot.val();
+          const swiperWrapper = document.querySelector('.hero-slider .swiper-wrapper');
+          headerImages.forEach((headerImage) => {
+            swiperWrapper.innerHTML += `
+              <div class="swiper-slide">
+                <div class="relative h-screen bg-cover bg-center" style="background-image: url('${headerImage.image_url}')">
+                  <div class="absolute inset-0 bg-black opacity-50"></div>
+                  <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-4">
+                    <h1 class="text-5xl font-bold mb-4">${headerImage.title}</h1>
+                    <p class="text-xl max-w-2xl">${headerImage.subtitle}</p>
+                    <a href="#crafts-grid" class="mt-8 px-6 py-3 bg-yellow-600 hover:bg-yellow-700 rounded-full text-white btn-animate">
+                      <i class="fas fa-shopping-bag mr-2"></i> Explore Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+          initializeHeroSlider();
+        } else {
+          console.log("No header images found in the database.");
+        }
+      }).catch((error) => {
+        console.error("Error fetching header images:", error);
+      });
+    }
+
+    // Initialize Hero Slider
+    function initializeHeroSlider() {
+      new Swiper('.hero-slider', {
+        loop: true,
+        pagination: { el: '.hero-slider .swiper-pagination', clickable: true },
+        navigation: { nextEl: '.hero-next', prevEl: '.hero-prev' },
+        effect: 'fade',
+        autoplay: { delay: 5000, disableOnInteraction: false },
+      });
+    }
+
+    // Load Crafts
+    function loadCrafts() {
       const projectsRef = ref(database, "projects");
-
-      // Fetch the data once and display it
       get(projectsRef).then((snapshot) => {
         const projects = snapshot.val();
+        const craftsGrid = document.getElementById('crafts-grid');
 
-        // Loop through the projects and dynamically create portfolio cards
         for (let key in projects) {
+          if (key === 'header_images' || key === 'cursor_image') continue;
           const project = projects[key];
 
-          // Create the card HTML and include the project ID in the URL
-          const cardHtml = `
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-          <img src="${project.image}" alt="Project Image" class="w-full">
-          <div class="p-6">
-            <h2 class="text-xl font-semibold mb-2">${project.title}</h2>
-            <p class="text-gray-700 mb-4">${project.description}</p>
-            <!-- Link to project page with ID -->
-            <a href="project.html?id=${project.id}" class="text-indigo-500 hover:text-indigo-600 font-semibold">
-              View Details
-            </a>
-          </div>
-        </div>
-      `;
+          const craftCard = document.createElement('div');
+          craftCard.className = 'bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300';
 
-          document.querySelector(".grid").innerHTML += cardHtml;
+          craftCard.innerHTML = `
+            <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold mb-2">${project.title}</h3>
+              <p class="text-gray-700 mb-4">${project.content.substring(0, 100)}...</p>
+              <a href="project.html?id=${project.id}" class="inline-flex items-center px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-full btn-animate">
+                <i class="fas fa-info-circle mr-2"></i> View Details
+              </a>
+            </div>
+          `;
+          craftsGrid.appendChild(craftCard);
         }
+      }).catch((error) => {
+        console.error("Error fetching crafts:", error);
       });
-    </script>
-  </body>
+    }
+
+    // Load Testimonials
+    function loadTestimonials() {
+      const testimonialsRef = ref(database, "testimonials");
+      get(testimonialsRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const testimonialsObj = snapshot.val();
+            const testimonialsSlider = document.getElementById("testimonials-slider");
+
+            // Convert the object to an array
+            const testimonialsArray = Object.values(testimonialsObj);
+
+            testimonialsArray.forEach((testimonial) => {
+              testimonialsSlider.innerHTML += `
+                <div class="swiper-slide">
+                  <div class="testimonial-slide">
+                    <p class="testimonial-quote">${testimonial.quote}</p>
+                    <p class="testimonial-author">- ${testimonial.author}</p>
+                  </div>
+                </div>
+              `;
+            });
+            initializeTestimonialsSlider();
+          } else {
+            console.log("No testimonials found in the database.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching testimonials:", error);
+        });
+    }
+
+    // Initialize Testimonials Slider
+    function initializeTestimonialsSlider() {
+      new Swiper('.testimonials-slider', {
+        loop: true,
+        slidesPerView: 1.2,
+        spaceBetween: 20,
+        centeredSlides: true,
+        pagination: false, // Disabled pagination dots
+        // Navigation parameters removed
+        autoplay: { delay: 7000, disableOnInteraction: false },
+      });
+    }
+
+    // Load Artisans
+    function loadArtisans() {
+      const artisansRef = ref(database, "artisans");
+      get(artisansRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const artisans = snapshot.val();
+            const artisansGrid = document.getElementById('artisans-grid');
+
+            for (let key in artisans) {
+              const artisan = artisans[key];
+
+              const artisanCard = document.createElement('div');
+              artisanCard.className = 'artisan-card shadow-lg';
+
+              artisanCard.innerHTML = `
+                <img src="${artisan.photo}" alt="${artisan.name}" class="artisan-photo">
+                <div class="artisan-info">
+                  <h3 class="artisan-name">${artisan.name}</h3>
+                  <p class="artisan-bio">${artisan.bio.substring(0, 100)}...</p>
+                  <div class="artisan-social mt-4">
+                    ${artisan.socialMedia.facebook ? `<a href="${artisan.socialMedia.facebook}" target="_blank"><i class="fab fa-facebook-f"></i></a>` : ''}
+                    ${artisan.socialMedia.instagram ? `<a href="${artisan.socialMedia.instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
+                  </div>
+                </div>
+              `;
+              artisansGrid.appendChild(artisanCard);
+            }
+          } else {
+            console.log("No artisans found in the database.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching artisans:", error);
+        });
+    }
+
+    // Load Cultural Insights
+    function loadInsights() {
+      const insightsRef = ref(database, "insights");
+      get(insightsRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            const insights = snapshot.val();
+            const insightsList = document.getElementById('insights-list');
+
+            for (let key in insights) {
+              const insight = insights[key];
+
+              const insightItem = document.createElement('div');
+              insightItem.className = 'insight-item flex flex-col md:flex-row';
+
+              insightItem.innerHTML = `
+                <img src="${insight.image}" alt="${insight.title}" class="w-full md:w-1/3 h-64 object-cover">
+                <div class="insight-content md:w-2/3">
+                  <h3 class="insight-title">${insight.title}</h3>
+                  <p class="insight-text">${insight.content.substring(0, 200)}...</p>
+                </div>
+              `;
+              insightsList.appendChild(insightItem);
+            }
+          } else {
+            console.log("No cultural insights found in the database.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching insights:", error);
+        });
+    }
+
+    // Load Data and Initialize Components
+    window.onload = () => {
+      loadHeroSlider();
+      loadCrafts();
+      loadTestimonials();
+      loadArtisans();
+      loadInsights();
+    };
+  </script>
+
+  <!-- Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+</body>
 </html>
