@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Details</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Georgia&display=swap" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="header-bar p-4 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Ancient Crafts</h1>
+      <nav>
+        <a href="index.html" class="text-white hover:text-gray-300 mx-2">Home</a>
+        <a href="about.html" class="text-white hover:text-gray-300 mx-2">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Full-Width Video Section -->
+  <section class="video-container animate-fade-in">
+    <iframe src="" id="project-video" title="Project Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  </section>
+
+  <!-- Project Title -->
+  <h1 id="project-title" class="project-title"></h1>
+
+  <!-- Artist Contact Info Section -->
+  <div class="contact-info" id="contact-info">
+    <h3 class="text-2xl font-bold">Artist Contact Information</h3>
+    <p><strong>Name:</strong> <span id="artist-name"></span></p>
+    <p><strong>Email:</strong> <span id="artist-email"></span></p>
+    <p><strong>Phone:</strong> <span id="artist-phone"></span></p>
+  </div>
+
+  <!-- Google Maps Section -->
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.7379155508824!2d31.227497815466626!3d30.0475712235206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583fa629cb9a5f%3A0x94a4b9f36a8610d6!2sCairo%2C%20Egypt!5e0!3m2!1sen!2sus!4v1631306960145!5m2!1sen!2sus"
+      width="100%" height="400px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+
+  <!-- Main Content -->
+  <div class="article-content animate-slide-up">
+    <!-- Collapsible paragraph inside card -->
+    <div class="collapsible-card" id="collapsible-card">
+      <p id="project-additional" class="collapsed-content"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-bar p-4 text-white mt-8">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Ancient Crafts. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

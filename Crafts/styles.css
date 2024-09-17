@@ -1,0 +1,95 @@
+/* Fonts */
+body {
+    font-family: 'Georgia', serif;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+  }
+  
+  /* Header and Footer */
+  .header-bar, .footer-bar {
+    background-color: #8B4513; /* Dark Brown */
+  }
+  
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-slide-up {
+    animation: slideUp 1s ease-in-out;
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Video Container */
+  .video-container {
+    width: 100vw;
+    height: calc(100vh - 120px);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .video-container iframe {
+    width: 100vw;
+    height: 100%;
+    border: none;
+  }
+  
+  /* Project Title */
+  .project-title {
+    margin-top: 40px;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Contact Info */
+  .contact-info {
+    background-color: #f3f4f6;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.125rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Collapsible Card */
+  .collapsible-card {
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+  .collapsed-content {
+    height: 4.5rem;
+    overflow: hidden;
+  }
+  .expanded-content {
+    height: auto;
+    transition: height 0.5s ease-in-out;
+  }
+  
+  /* Article Content */
+  .article-content {
+    padding: 0 20px;
+  }
+  
