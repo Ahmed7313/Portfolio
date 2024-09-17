@@ -8,7 +8,7 @@ Welcome to the Ancient Artifacts Portfolio! This project showcases my work, buil
 
 📄 **Final Project Blog Article:** [Read about my project](http://your-blog-article-link.com)
 
-👤 **Author: [AHmed Rabie](https://www.linkedin.com/in/ahmed-adel-rabie/)**
+👤 **Author: [Ahmed Rabie](https://www.linkedin.com/in/ahmed-adel-rabie/)**
 
 ---
 
