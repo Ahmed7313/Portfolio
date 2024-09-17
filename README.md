@@ -44,7 +44,7 @@ This portfolio website is designed to be simple and intuitive.
 
 ### Screenshot
 
-![Portfolio Screenshot](https://ibb.co/nDf9F5g)
+![Portfolio Screenshot]([https://ibb.co/nDf9F5g](https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/Screenshot%202024-09-17%20223112.png?alt=media&token=adac0dff-4359-4bda-8307-bd7060896a1a))
 
 ---
 
