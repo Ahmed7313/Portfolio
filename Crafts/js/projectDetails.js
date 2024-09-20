@@ -42,6 +42,7 @@ async function loadProjectDetails() {
     }
   } catch (error) {
     document.getElementById('project-additional').innerHTML = `<p>Error fetching project details: ${error.message}</p>`;
+    console.error("Error fetching project details:", error);
   }
 }
 
@@ -63,4 +64,5 @@ function initializeCollapsibleCard() {
   });
 }
 
-export { loadProjectDetails };
+// Call the function to load project details
+loadProjectDetails();

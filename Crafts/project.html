@@ -32,15 +32,32 @@
       <nav class="space-x-4">
         <a href="../index.html" class="hover:text-gray-300">Home</a>
         <a href="../about.html" class="hover:text-gray-300">About</a>
-        <a href="../contact.html" class="hover:text-gray-300">Contact</a>
+        <!-- Make sure 'contact.html' exists or remove this link -->
+        <!-- <a href="../contact.html" class="hover:text-gray-300">Contact</a> -->
       </nav>
     </div>
   </header>
 
   <!-- Main Content -->
   <main class="container mx-auto px-4 py-24">
-    <div id="project-details">
-      <!-- Project details will be loaded here -->
+    <!-- Project Video -->
+    <div class="video-container">
+      <iframe id="project-video" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <!-- Project Title -->
+    <h1 id="project-title" class="project-title"></h1>
+
+    <!-- Collapsible Card -->
+    <div id="collapsible-card" class="collapsible-card">
+      <p id="project-additional" class="collapsed-content"></p>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <p><strong>Artist Name:</strong> <span id="artist-name"></span></p>
+      <p><strong>Email:</strong> <span id="artist-email"></span></p>
+      <p><strong>Phone:</strong> <span id="artist-phone"></span></p>
     </div>
   </main>
 
