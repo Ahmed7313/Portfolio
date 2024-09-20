@@ -15,19 +15,23 @@ const db = getDatabase(app);
 const urlParams = new URLSearchParams(window.location.search);
 const artisanId = urlParams.get('id');
 
-// Fetch artisan data from Firebase
-get(child(ref(db), `artisans/${artisanId}`))
-  .then((snapshot) => {
-    if (snapshot.exists()) {
-      const artisan = snapshot.val();
-      displayArtisan(artisan);
-    } else {
-      console.error('No data available for this artisan.');
-    }
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+if (artisanId) {
+  // Fetch artisan data from Firebase
+  get(child(ref(db), `artisans/${artisanId}`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const artisan = snapshot.val();
+        displayArtisan(artisan);
+      } else {
+        console.error('No data available for this artisan.');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+} else {
+  console.error('No artisan ID provided in the URL.');
+}
 
 // Function to display the artisan data
 function displayArtisan(artisan) {

@@ -6,7 +6,8 @@ body {
   }
   
   /* Header and Footer */
-  .header-bar, .footer-bar {
+  .header-bar,
+  .footer-bar {
     background-color: #4a2c2a; /* Darker Brown */
   }
   
