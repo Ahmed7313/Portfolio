@@ -1,41 +1,43 @@
 // artisans/js/artisan.js
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js';
-import { getDatabase, ref, get, child } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js';
+import { database } from '../../js/firebase.js';
+import { ref, get } from 'https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js';
 
-// Firebase configuration
-const firebaseConfig = {
-  // Your Firebase config here
-};
+// Function to get query parameter by name
+function getParameterByName(name) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(name);
+}
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+// Function to load artisan details
+async function loadArtisanDetails() {
+  try {
+    // Get the artisan ID from the URL
+    const artisanId = getParameterByName('id');
 
-// Get the artisan ID from the URL
-const urlParams = new URLSearchParams(window.location.search);
-const artisanId = urlParams.get('id');
+    if (!artisanId) {
+      document.getElementById('artisan-details').innerHTML = `<p>Artisan ID not provided!</p>`;
+      return;
+    }
 
-if (artisanId) {
-  // Fetch artisan data from Firebase
-  get(child(ref(db), `artisans/${artisanId}`))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        const artisan = snapshot.val();
-        displayArtisan(artisan);
-      } else {
-        console.error('No data available for this artisan.');
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-} else {
-  console.error('No artisan ID provided in the URL.');
+    // Fetch artisan data from Firebase
+    const artisanRef = ref(database, 'artisans/' + artisanId);
+    const snapshot = await get(artisanRef);
+    const artisan = snapshot.val();
+
+    if (artisan) {
+      displayArtisan(artisan);
+    } else {
+      document.getElementById('artisan-details').innerHTML = `<p>Artisan not found!</p>`;
+    }
+  } catch (error) {
+    document.getElementById('artisan-details').innerHTML = `<p>Error fetching artisan details: ${error.message}</p>`;
+    console.error("Error fetching artisan details:", error);
+  }
 }
 
 // Function to display the artisan data
 function displayArtisan(artisan) {
-  const article = document.getElementById('artisan-article');
+  const artisanDetails = document.getElementById('artisan-details');
 
   // Create the HTML structure
   const artisanHeader = document.createElement('header');
@@ -55,10 +57,13 @@ function displayArtisan(artisan) {
 
   // Article content
   const articleContent = document.createElement('div');
-  articleContent.classList.add('article-content');
+  articleContent.classList.add('prose', 'mx-auto');
   articleContent.innerHTML = artisan.article.content.replace(/\n/g, '<br><br>');
 
-  // Append to the article
-  article.appendChild(artisanHeader);
-  article.appendChild(articleContent);
+  // Append to the artisan details
+  artisanDetails.appendChild(artisanHeader);
+  artisanDetails.appendChild(articleContent);
 }
+
+// Call the function to load artisan details
+loadArtisanDetails();
