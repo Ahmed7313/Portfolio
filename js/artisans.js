@@ -14,6 +14,16 @@ async function loadArtisans() {
       for (let key in artisans) {
         const artisan = artisans[key];
 
+        // Create a wrapper div
+        const artisanWrapper = document.createElement('div');
+        artisanWrapper.className = 'block cursor-pointer';
+
+        // Add click event to navigate to artisan page
+        artisanWrapper.addEventListener('click', () => {
+          window.location.href = `artisans/artisan.html?id=${artisan.id}`;
+        });
+
+        // Create the artisan card
         const artisanCard = document.createElement('div');
         artisanCard.className = 'artisan-card shadow-lg';
 
@@ -28,7 +38,12 @@ async function loadArtisans() {
             </div>
           </div>
         `;
-        artisansGrid.appendChild(artisanCard);
+
+        // Append the card to the wrapper
+        artisanWrapper.appendChild(artisanCard);
+
+        // Append the wrapper to the grid
+        artisansGrid.appendChild(artisanWrapper);
       }
     } else {
       console.log("No artisans found in the database.");

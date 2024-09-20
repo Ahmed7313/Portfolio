@@ -1,0 +1,50 @@
+/* artisans/css/artisan.css */
+
+/* Custom Fonts */
+body {
+    font-family: 'Cinzel', serif;
+  }
+  
+  /* Header and Footer */
+  .header-bar, .footer-bar {
+    background-color: #4a2c2a; /* Darker Brown */
+  }
+  
+  /* Article Content Styles */
+  .prose {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #333;
+    max-width: 800px;
+  }
+  
+  .prose h1 {
+    font-size: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose img {
+    margin-bottom: 1.5rem;
+  }
+  
+  .prose blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #FFC107;
+    padding-left: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .prose a {
+    color: #4a2c2a;
+    text-decoration: underline;
+  }
+  
+  .prose a:hover {
+    color: #FFC107;
+  }
+  
