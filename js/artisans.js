@@ -20,7 +20,7 @@ async function loadArtisans() {
 
         // Add click event to navigate to artisan page
         artisanWrapper.addEventListener('click', () => {
-          window.location.href = `artisans/artisan.html?id=${artisan.id}`;
+          window.location.href = `./artisans/artisan.htm?id=${artisan.id}`;
         });
 
         // Create the artisan card
