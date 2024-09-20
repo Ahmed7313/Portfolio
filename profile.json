@@ -1,0 +1,130 @@
+{
+    "artisans": {
+      "artisan1": {
+        "id": "artisan1",
+        "name": "Ahmed El-Hassan",
+        "photo": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/aa.webp?alt=media&token=1c6a2bd4-2bfa-4daa-a821-a88a8bc0b90f",
+        "bio": "A master papyrus maker with over 30 years of experience, Ahmed has dedicated his life to preserving the ancient art of papyrus crafting.",
+        "socialMedia": {
+          "facebook": "https://facebook.com/ahmedelhassan",
+          "instagram": "https://instagram.com/ahmedelhassan"
+        },
+        "article": {
+          "title": "The Life and Craft of Ahmed El-Hassan",
+          "content": "Born in a small village along the Nile, Ahmed El-Hassan grew up surrounded by the rich history and traditions of ancient Egypt...\n\n[Continue with the article content]"
+        }
+      },
+      "artisan2": {
+        "id": "artisan2",
+        "name": "Mariam Khaled",
+        "photo": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/%D8%B3%D8%B3%D9%8A.jpg?alt=media&token=d2a1dfef-3bd3-4788-ba8e-f18b2b94f5c8",
+        "bio": "An expert in crafting ancient Egyptian jewelry, Mariam infuses traditional designs with modern aesthetics.",
+        "socialMedia": {
+          "facebook": "https://facebook.com/mariamkhaled",
+          "instagram": "https://instagram.com/mariamkhaled"
+        },
+        "article": {
+          "title": "Mariam Khaled: Reviving Ancient Egyptian Jewelry",
+          "content": "Growing up in Cairo, Mariam Khaled was always captivated by the intricate designs of ancient Egyptian jewelry displayed in museums...\n\n[Continue with the article content]"
+        }
+      }
+    },
+  "insights": {
+    "insight1": {
+      "content": "Papyrus was more than just a writing material; it was a symbol of life and fertility in ancient Egyptian culture...",
+      "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/Ebers-Papyrus-Ancient-Egyptian-Medical-Text.webp?alt=media&token=a67a983d-aec4-40ef-9e89-52569fbf5a98",
+      "title": "The Significance of Papyrus in Ancient Egypt"
+    },
+    "insight2": {
+      "content": "Egyptian pottery is one of the oldest crafts, reflecting the daily life and beliefs of the people...",
+      "image": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/images.jpg?alt=media&token=9a56355c-8cba-4512-9b60-c7d3a2042e36",
+      "title": "The Art of Egyptian Pottery"
+    }
+  },
+  "projects": {
+    "cursor_image": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/cursor_image.jpg?alt=media&token=471e8fdb-e8ef-428a-b398-446e1e808250",
+    "header_images": [
+      {
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/header.jpg?alt=media&token=648d823e-c756-4059-b113-82c296e85c9e",
+        "subtitle": "Experience the timeless beauty of handcrafted artifacts from Egypt, connecting you to a rich cultural heritage.",
+        "title": "Welcome to Ancient Crafts"
+      },
+      {
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/header-2.jpg?alt=media&token=dcc35969-65ed-4ae5-bc80-bfa0ee63762f",
+        "subtitle": "Each piece tells a story of ancient traditions preserved through time.",
+        "title": "Discover Authentic Egyptian Artifacts"
+      },
+      {
+        "image_url": "https://firebasestorage.googleapis.com/v0/b/portfolio-1ebdf.appspot.com/o/header-3.jpg?alt=media&token=706e760f-c077-4ad3-996d-0a066612f6bf",
+        "subtitle": "Bringing you closer to the creators of timeless handcrafts.",
+        "title": "Connect with Egyptian Artisans"
+      }
+    ],
+    "project1": {
+      "additionalInfo": "In this video, learn how papyrus makers in Egypt still practice the age-old techniques passed down from generation to generation. The documentary delves into the challenges they face in preserving this heritage, while modern pressures push them to adapt.",
+      "contact": {
+        "email": "ahmed.elhassan@example.com",
+        "name": "Ahmed El-Hassan",
+        "phone": "+20 123 456 7890"
+      },
+      "content": "Explore how artisans in Egypt have kept the 5,000-year-old tradition of papyrus making alive. Witness the careful process that turns the papyrus plant into delicate scrolls that capture the spirit of ancient Egypt.",
+      "id": "project1",
+      "image": "https://img.youtube.com/vi/SBdVhvo2UUM/maxresdefault.jpg",
+      "title": "The Craft of Papyrus Making in Egypt",
+      "video": "https://www.youtube.com/embed/SBdVhvo2UUM"
+    },
+    "project2": {
+      "additionalInfo": "Egyptian artisans have mastered the art of jewelry making over thousands of years, passing down intricate techniques. Learn how modern jewelers keep the art alive and create pieces that reflect Egypt’s rich history.",
+      "contact": {
+        "email": "mariam.khaled@example.com",
+        "name": "Mariam Khaled",
+        "phone": "+20 987 654 3210"
+      },
+      "content": "Discover the world of ancient Egyptian jewelry makers who craft pieces inspired by millennia of history. This project explores the artistry of creating detailed jewelry using techniques from ancient Egypt.",
+      "id": "project2",
+      "image": "https://img.youtube.com/vi/8e0G51TYHy8/maxresdefault.jpg",
+      "title": "Ancient Egyptian Jewelry Makers",
+      "video": "https://www.youtube.com/embed/8e0G51TYHy8"
+    },
+    "project3": {
+      "additionalInfo": "This project provides a detailed look at how Egyptian artifacts have been preserved and maintained by skilled artisans, ensuring that the legacy of this civilization remains intact.",
+      "contact": {
+        "email": "hassan.abdallah@example.com",
+        "name": "Hassan Abdallah",
+        "phone": "+20 789 654 1230"
+      },
+      "content": "Explore the world of authentic Egyptian artifacts that tell the story of a civilization that has left a lasting impression on history. From pottery to jewelry, this project brings you closer to Egypt’s ancient treasures.",
+      "id": "project3",
+      "image": "https://img.youtube.com/vi/kKO6X5sQ710/maxresdefault.jpg",
+      "title": "Authentic Egyptian Artifacts",
+      "video": "https://www.youtube.com/embed/kKO6X5sQ710"
+    },
+    "project4": {
+      "additionalInfo": "This video explores the ancient art of pottery making in Egypt, focusing on the techniques that have been handed down for centuries. Learn about the delicate balance between tradition and modern influences in this timeless craft.",
+      "contact": {
+        "email": "mohamed.fathy@example.com",
+        "name": "Mohamed Fathy",
+        "phone": "+20 456 789 3210"
+      },
+      "content": "Dive into the process of making traditional Egyptian pottery, passed down through generations of artisans. See how these craftspeople shape clay into beautiful and functional pieces of art.",
+      "id": "project4",
+      "image": "https://img.youtube.com/vi/KYPXGqtacpw/maxresdefault.jpg",
+      "title": "The Traditional Egyptian Pottery Process",
+      "video": "https://www.youtube.com/embed/KYPXGqtacpw"
+    }
+  },
+  "testimonials": {
+    "testimonial1": {
+      "author": "Sarah T.",
+      "quote": "The craftsmanship is absolutely stunning! I feel like I own a piece of history."
+    },
+    "testimonial2": {
+      "author": "John M.",
+      "quote": "The quality of these artifacts is top-notch, and the connection to Egyptian culture is amazing."
+    },
+    "testimonial3": {
+      "author": "Emily K.",
+      "quote": "I love supporting artisans who continue to preserve ancient traditions through their craft."
+    }
+  }
+}
