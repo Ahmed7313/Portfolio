@@ -26,7 +26,7 @@ async function loadProjectDetails() {
 
     if (project) {
       // Populate the page with project details and video
-      document.getElementById('project-video').src = project.video;
+      document.getElementById('project-video').src = project.video + '?autoplay=1&mute=1';
       document.getElementById('project-title').innerText = project.title;
       document.getElementById('project-additional').innerText = project.additionalInfo;
 
@@ -34,6 +34,13 @@ async function loadProjectDetails() {
       document.getElementById('artist-name').innerText = project.contact.name;
       document.getElementById('artist-email').innerText = project.contact.email;
       document.getElementById('artist-phone').innerText = project.contact.phone;
+
+      // Initialize the map
+      if (project.location && project.location.lat && project.location.lng) {
+        initMap(project.location.lat, project.location.lng);
+      } else {
+        document.getElementById('map').innerHTML = '<p>Location data not available.</p>';
+      }
 
       // Initialize collapsible card behavior
       initializeCollapsibleCard();
@@ -46,23 +53,46 @@ async function loadProjectDetails() {
   }
 }
 
+// Function to initialize the Google Map
+function initMap(lat, lng) {
+  const mapOptions = {
+    center: { lat: lat, lng: lng },
+    zoom: 14,
+  };
+  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  // Add a marker at the project's location
+  const marker = new google.maps.Marker({
+    position: { lat: lat, lng: lng },
+    map: map,
+  });
+}
+
 // Function to initialize collapsible card behavior
 function initializeCollapsibleCard() {
   const collapsibleCard = document.getElementById('collapsible-card');
   const additionalInfoParagraph = document.getElementById('project-additional');
+  const toggleButton = document.getElementById('toggle-button');
   let isExpanded = false;
 
-  collapsibleCard.addEventListener('click', () => {
+  toggleButton.addEventListener('click', (e) => {
+    e.stopPropagation();
     if (isExpanded) {
       additionalInfoParagraph.classList.remove('expanded-content');
       additionalInfoParagraph.classList.add('collapsed-content');
+      toggleButton.textContent = 'Read More';
     } else {
       additionalInfoParagraph.classList.remove('collapsed-content');
       additionalInfoParagraph.classList.add('expanded-content');
+      toggleButton.textContent = 'Read Less';
     }
     isExpanded = !isExpanded;
   });
+
+  collapsibleCard.addEventListener('click', () => {
+    toggleButton.click();
+  });
 }
 
-// Call the function to load project details
-loadProjectDetails();
+// Call the function to load project details after the window loads
+window.onload = loadProjectDetails;

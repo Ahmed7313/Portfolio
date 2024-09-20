@@ -16,9 +16,6 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-  <!-- Swiper CSS for Modern Slider -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-
   <!-- Custom CSS -->
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -32,33 +29,45 @@
       <nav class="space-x-4">
         <a href="../index.html" class="hover:text-gray-300">Home</a>
         <a href="../about.html" class="hover:text-gray-300">About</a>
-        <!-- Make sure 'contact.html' exists or remove this link -->
+        <!-- Remove or update the contact link if it doesn't exist -->
         <!-- <a href="../contact.html" class="hover:text-gray-300">Contact</a> -->
       </nav>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="container mx-auto px-4 py-24">
-    <!-- Project Video -->
-    <div class="video-container">
-      <iframe id="project-video" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
+  <main class="pt-24">
+    <!-- Video Section -->
+    <section class="video-container w-full h-screen">
+      <iframe id="project-video" src="" frameborder="0" allowfullscreen class="w-full h-full"></iframe>
+    </section>
 
-    <!-- Project Title -->
-    <h1 id="project-title" class="project-title"></h1>
+    <!-- Title and Contact Information -->
+    <section class="container mx-auto px-4 py-8">
+      <h1 id="project-title" class="text-4xl font-bold mb-6"></h1>
+      <div class="contact-info bg-white p-6 rounded-lg shadow-lg">
+        <p class="mb-2"><strong>Artist Name:</strong> <span id="artist-name"></span></p>
+        <p class="mb-2"><strong>Email:</strong> <span id="artist-email"></span></p>
+        <p class="mb-2"><strong>Phone:</strong> <span id="artist-phone"></span></p>
+      </div>
+    </section>
 
-    <!-- Collapsible Card -->
-    <div id="collapsible-card" class="collapsible-card">
-      <p id="project-additional" class="collapsed-content"></p>
-    </div>
+    <!-- Google Map Section -->
+    <section class="container mx-auto px-4 py-8">
+      <h2 class="text-2xl font-semibold mb-4">Location</h2>
+      <div id="map" class="w-full h-96 rounded-lg shadow-lg"></div>
+    </section>
 
-    <!-- Contact Info -->
-    <div class="contact-info">
-      <p><strong>Artist Name:</strong> <span id="artist-name"></span></p>
-      <p><strong>Email:</strong> <span id="artist-email"></span></p>
-      <p><strong>Phone:</strong> <span id="artist-phone"></span></p>
-    </div>
+    <!-- Expandable Article -->
+    <section class="container mx-auto px-4 py-8">
+      <div id="collapsible-card" class="collapsible-card bg-white p-6 rounded-lg shadow-lg cursor-pointer">
+        <h2 class="text-2xl font-semibold mb-4">More Information</h2>
+        <p id="project-additional" class="collapsed-content"></p>
+        <div class="text-center mt-4">
+          <button id="toggle-button" class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-full">Read More</button>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- Footer -->
@@ -73,10 +82,10 @@
     </div>
   </footer>
 
-  <!-- Swiper JS CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
   <!-- Firebase and Project Details JS -->
   <script type="module" src="js/projectDetails.js"></script>
+
+  <!-- Google Maps JavaScript API -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
 </body>
 </html>
