@@ -8,6 +8,9 @@ function getParameterByName(name) {
   return url.searchParams.get(name);
 }
 
+// Variable to store project data
+let project = null;
+
 // Function to load project details
 async function loadProjectDetails() {
   try {
@@ -22,7 +25,7 @@ async function loadProjectDetails() {
     // Fetch project data from Firebase
     const projectRef = ref(database, 'projects/' + projectId);
     const snapshot = await get(projectRef);
-    const project = snapshot.val();
+    project = snapshot.val();
 
     if (project) {
       // Populate the page with project details and video
@@ -49,14 +52,22 @@ async function loadProjectDetails() {
   }
 }
 
-// Function to initialize the Google Map
+// Function to initialize the embedded Google Map without an API key
 function initMap() {
-  const cairoLatLng = { lat: 30.044420, lng: 31.235712 }; // Coordinates for Cairo
-  const mapOptions = {
-    center: cairoLatLng,
-    zoom: 12,
-  };
-  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  const mapIframe = document.getElementById('map');
+  // Set the default location to Cairo, Egypt
+  let location = 'Cairo, Egypt';
+
+  // If project has a location, use it
+  if (project.location && project.location.lat && project.location.lng) {
+    location = `${project.location.lat},${project.location.lng}`;
+  }
+
+  // Generate the Google Maps embed URL without an API key
+  const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
+
+  // Set the src of the iframe
+  mapIframe.src = embedUrl;
 }
 
 // Function to initialize collapsible card behavior
