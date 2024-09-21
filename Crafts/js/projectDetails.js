@@ -15,7 +15,7 @@ async function loadProjectDetails() {
     const projectId = getParameterByName('id');
 
     if (!projectId) {
-      document.getElementById('project-additional').innerHTML = `<p>Project ID not provided!</p>`;
+      document.getElementById('project-additional').innerHTML = '<p>Project ID not provided!</p>';
       return;
     }
 
@@ -26,9 +26,9 @@ async function loadProjectDetails() {
 
     if (project) {
       // Populate the page with project details and video
-      document.getElementById('project-video').src = project.video + '?autoplay=1&mute=1';
+      document.getElementById('project-video').src = project.video;
       document.getElementById('project-title').innerText = project.title;
-      document.getElementById('project-additional').innerText = project.additionalInfo;
+      document.getElementById('project-additional').innerHTML = project.content;
 
       // Populate contact info
       document.getElementById('artist-name').innerText = project.contact.name;
@@ -36,36 +36,27 @@ async function loadProjectDetails() {
       document.getElementById('artist-phone').innerText = project.contact.phone;
 
       // Initialize the map
-      if (project.location && project.location.lat && project.location.lng) {
-        initMap(project.location.lat, project.location.lng);
-      } else {
-        document.getElementById('map').innerHTML = '<p>Location data not available.</p>';
-      }
+      initMap();
 
       // Initialize collapsible card behavior
       initializeCollapsibleCard();
     } else {
-      document.getElementById('project-additional').innerHTML = `<p>Project not found!</p>`;
+      document.getElementById('project-additional').innerHTML = '<p>Project not found!</p>';
     }
   } catch (error) {
-    document.getElementById('project-additional').innerHTML = `<p>Error fetching project details: ${error.message}</p>`;
+    document.getElementById('project-additional').innerHTML = '<p>Error fetching project details: ' + error.message + '</p>';
     console.error("Error fetching project details:", error);
   }
 }
 
 // Function to initialize the Google Map
-function initMap(lat, lng) {
+function initMap() {
+  const cairoLatLng = { lat: 30.044420, lng: 31.235712 }; // Coordinates for Cairo
   const mapOptions = {
-    center: { lat: lat, lng: lng },
-    zoom: 14,
+    center: cairoLatLng,
+    zoom: 12,
   };
   const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-  // Add a marker at the project's location
-  const marker = new google.maps.Marker({
-    position: { lat: lat, lng: lng },
-    map: map,
-  });
 }
 
 // Function to initialize collapsible card behavior
