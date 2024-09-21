@@ -18,7 +18,7 @@ async function loadProjectDetails() {
     const projectId = getParameterByName('id');
 
     if (!projectId) {
-      document.getElementById('project-additional').innerHTML = '<p>Project ID not provided!</p>';
+      document.getElementById('project-content').innerHTML = '<p>Project ID not provided!</p>';
       return;
     }
 
@@ -31,7 +31,7 @@ async function loadProjectDetails() {
       // Populate the page with project details and video
       document.getElementById('project-video').src = project.video;
       document.getElementById('project-title').innerText = project.title;
-      document.getElementById('project-additional').innerHTML = project.content;
+      document.getElementById('project-content').innerHTML = project.content;
 
       // Populate contact info
       document.getElementById('artist-name').innerText = project.contact.name;
@@ -44,10 +44,10 @@ async function loadProjectDetails() {
       // Initialize collapsible card behavior
       initializeCollapsibleCard();
     } else {
-      document.getElementById('project-additional').innerHTML = '<p>Project not found!</p>';
+      document.getElementById('project-content').innerHTML = '<p>Project not found!</p>';
     }
   } catch (error) {
-    document.getElementById('project-additional').innerHTML = '<p>Error fetching project details: ' + error.message + '</p>';
+    document.getElementById('project-content').innerHTML = '<p>Error fetching project details: ' + error.message + '</p>';
     console.error("Error fetching project details:", error);
   }
 }
@@ -55,13 +55,10 @@ async function loadProjectDetails() {
 // Function to initialize the embedded Google Map without an API key
 function initMap() {
   const mapIframe = document.getElementById('map');
-  // Set the default location to Cairo, Egypt
-  let location = 'Cairo, Egypt';
-
-  // If project has a location, use it
-  if (project.location && project.location.lat && project.location.lng) {
-    location = `${project.location.lat},${project.location.lng}`;
-  }
+  // Set the default location to a random location in Cairo, Egypt
+  const randomLat = 30.0444 + (Math.random() - 0.5) * 0.1; // Random latitude near Cairo
+  const randomLng = 31.2357 + (Math.random() - 0.5) * 0.1; // Random longitude near Cairo
+  const location = `${randomLat},${randomLng}`;
 
   // Generate the Google Maps embed URL without an API key
   const embedUrl = `https://www.google.com/maps?q=${encodeURIComponent(location)}&output=embed`;
@@ -73,19 +70,19 @@ function initMap() {
 // Function to initialize collapsible card behavior
 function initializeCollapsibleCard() {
   const collapsibleCard = document.getElementById('collapsible-card');
-  const additionalInfoParagraph = document.getElementById('project-additional');
+  const contentDiv = document.getElementById('project-content');
   const toggleButton = document.getElementById('toggle-button');
   let isExpanded = false;
 
   toggleButton.addEventListener('click', (e) => {
     e.stopPropagation();
     if (isExpanded) {
-      additionalInfoParagraph.classList.remove('expanded-content');
-      additionalInfoParagraph.classList.add('collapsed-content');
+      contentDiv.classList.remove('expanded-content');
+      contentDiv.classList.add('collapsed-content');
       toggleButton.textContent = 'Read More';
     } else {
-      additionalInfoParagraph.classList.remove('collapsed-content');
-      additionalInfoParagraph.classList.add('expanded-content');
+      contentDiv.classList.remove('collapsed-content');
+      contentDiv.classList.add('expanded-content');
       toggleButton.textContent = 'Read Less';
     }
     isExpanded = !isExpanded;
