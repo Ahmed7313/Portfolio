@@ -1,6 +1,6 @@
 // js/testimonials.js
 import { database } from './firebase.js';
-import { ref, get } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+import { ref, get } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
 async function loadTestimonials() {
   try {
@@ -8,38 +8,46 @@ async function loadTestimonials() {
     const snapshot = await get(testimonialsRef);
 
     if (snapshot.exists()) {
-      const testimonialsObj = snapshot.val();
-      const testimonialsSlider = document.getElementById("testimonials-slider");
-      const testimonialsArray = Object.values(testimonialsObj);
+      const testimonials = snapshot.val();
+      const testimonialsSlider = document.getElementById('testimonials-slider');
 
-      testimonialsArray.forEach((testimonial) => {
-        testimonialsSlider.innerHTML += `
-          <div class="swiper-slide">
-            <div class="testimonial-slide">
-              <p class="testimonial-quote">${testimonial.quote}</p>
-              <p class="testimonial-author">- ${testimonial.author}</p>
-            </div>
+      for (let key in testimonials) {
+        const testimonial = testimonials[key];
+
+        const testimonialSlide = document.createElement('div');
+        testimonialSlide.className = 'swiper-slide';
+
+        testimonialSlide.innerHTML = `
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <p class="text-gray-700 italic">"${testimonial.quote}"</p>
+            <p class="mt-4 text-right font-semibold">${testimonial.author}</p>
           </div>
         `;
+        testimonialsSlider.appendChild(testimonialSlide);
+      }
+
+      // Initialize Swiper for Testimonials
+      new Swiper('.testimonials-slider', {
+        loop: true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
       });
-      initializeTestimonialsSlider();
     } else {
       console.log("No testimonials found in the database.");
+      const testimonialsSlider = document.getElementById('testimonials-slider');
+      testimonialsSlider.innerHTML = '<p class="text-center text-gray-500">No testimonials available at the moment.</p>';
     }
   } catch (error) {
     console.error("Error fetching testimonials:", error);
+    const testimonialsSlider = document.getElementById('testimonials-slider');
+    testimonialsSlider.innerHTML = `<p class="text-center text-red-500">Error loading testimonials. Please try again later.</p>`;
   }
-}
-
-function initializeTestimonialsSlider() {
-  new Swiper('.testimonials-slider', {
-    loop: true,
-    slidesPerView: 1.2,
-    spaceBetween: 20,
-    centeredSlides: true,
-    pagination: false,
-    autoplay: { delay: 7000, disableOnInteraction: false },
-  });
 }
 
 export { loadTestimonials };

@@ -15,7 +15,7 @@ async function loadInsightDetails() {
     const insightId = getParameterByName('id');
 
     if (!insightId) {
-      document.getElementById('insight-content').innerHTML = '<p>Insight ID not provided!</p>';
+      document.getElementById('insight-content').innerHTML = '<p class="text-center text-red-500">Insight ID not provided!</p>';
       return;
     }
 
@@ -28,15 +28,17 @@ async function loadInsightDetails() {
       // Set header image and title
       const headerSection = document.getElementById('insight-header');
       headerSection.style.backgroundImage = `url('${insight.image}')`;
+      headerSection.style.backgroundSize = 'cover';
+      headerSection.style.backgroundPosition = 'center';
       document.getElementById('insight-title').innerText = insight.title;
 
       // Populate the page with insight content
       document.getElementById('insight-content').innerHTML = insight.content;
     } else {
-      document.getElementById('insight-content').innerHTML = '<p>Insight not found!</p>';
+      document.getElementById('insight-content').innerHTML = '<p class="text-center text-gray-500">Insight not found!</p>';
     }
   } catch (error) {
-    document.getElementById('insight-content').innerHTML = '<p>Error fetching insight details: ' + error.message + '</p>';
+    document.getElementById('insight-content').innerHTML = `<p class="text-center text-red-500">Error fetching insight details: ${error.message}</p>`;
     console.error("Error fetching insight details:", error);
   }
 }

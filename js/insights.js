@@ -1,6 +1,6 @@
 // js/insights.js
 import { database } from './firebase.js';
-import { ref, get } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+import { ref, get } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
 async function loadInsights() {
   try {
@@ -31,9 +31,13 @@ async function loadInsights() {
       }
     } else {
       console.log("No cultural insights found in the database.");
+      const insightsList = document.getElementById('insights-list');
+      insightsList.innerHTML = '<p class="text-center text-gray-500">No cultural insights available at the moment.</p>';
     }
   } catch (error) {
     console.error("Error fetching insights:", error);
+    const insightsList = document.getElementById('insights-list');
+    insightsList.innerHTML = `<p class="text-center text-red-500">Error loading insights. Please try again later.</p>`;
   }
 }
 
