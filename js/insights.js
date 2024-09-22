@@ -15,14 +15,17 @@ async function loadInsights() {
         const insight = insights[key];
 
         const insightItem = document.createElement('div');
-        insightItem.className = 'insight-item flex flex-col md:flex-row';
+        insightItem.className = 'insight-item flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden';
 
         insightItem.innerHTML = `
-          <img src="${insight.image}" alt="${insight.title}" class="w-full md:w-1/3 h-64 object-cover">
-          <div class="insight-content md:w-2/3">
-            <h3 class="insight-title">${insight.title}</h3>
-            <p class="insight-text">${insight.content.substring(0, 200)}...</p>
-          </div>
+          <a href="insights/insight.html?id=${key}" class="flex flex-col md:flex-row">
+            <img src="${insight.image}" alt="${insight.title}" class="w-full md:w-1/3 h-64 object-cover">
+            <div class="insight-content md:w-2/3 p-4">
+              <h3 class="insight-title text-2xl font-semibold mb-2">${insight.title}</h3>
+              <p class="insight-text text-gray-700">${insight.content.substring(0, 200)}...</p>
+              <span class="text-blue-500 mt-2 inline-block">Read More</span>
+            </div>
+          </a>
         `;
         insightsList.appendChild(insightItem);
       }
