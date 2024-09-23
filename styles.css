@@ -1,143 +1,26 @@
 /* Custom Fonts */
 body {
-    font-family: 'Cinzel', serif;
-  }
-  
-  /* Header and Footer */
-  .header-bar, .footer-bar {
-    background-color: #4a2c2a; /* Darker Brown */
-  }
-  
-  /* Loader Styles */
-  #loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff url('https://i.imgur.com/LLF5iyg.gif') no-repeat center center;
-    z-index: 9999;
-  }
-  
-  /* Button Animations */
-  .btn-animate {
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s;
-  }
-  .btn-animate::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: skewX(-45deg);
-    transition: left 0.5s;
-  }
-  .btn-animate:hover::after {
-    left: 100%;
-  }
-  
-  /* Hero Slider Styles */
-  .hero-slider .swiper-pagination-bullet {
-    background: #FFC107; /* Adjust color to match your theme */
-  }
-  .hero-slider .swiper-button-next,
-  .hero-slider .swiper-button-prev {
-    color: #fff;
-  }
-  
-  /* Testimonial Styles */
-  .testimonial-slide {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    position: relative;
-  }
-  .testimonial-slide::before {
-    content: '\f10d';
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 3rem;
-    color: #FFC107;
-    position: absolute;
-    top: -1rem;
-    left: -1rem;
-  }
-  .testimonial-quote {
-    font-size: 1.25rem;
-    font-style: italic;
-    color: #4a2c2a;
-    margin-bottom: 1rem;
-  }
-  .testimonial-author {
-    font-weight: bold;
-    color: #4a2c2a;
-  }
-  
-  /* Artisan Card Styles */
-  .artisan-card {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: transform 0.3s;
-  }
-  .artisan-card:hover {
-    transform: scale(1.05);
-  }
-  .artisan-photo {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
-  .artisan-info {
-    padding: 1.5rem;
-  }
-  .artisan-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4a2c2a;
-  }
-  .artisan-bio {
-    color: #555;
-    margin-top: 0.5rem;
-  }
-  .artisan-social a {
-    color: #4a2c2a;
-    margin-right: 0.5rem;
-  }
-  .artisan-social a:hover {
-    color: #FFC107;
-  }
-  
-  /* Insights Styles */
-  .insight-item {
-    background-color: #fff;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  }
-  .insight-item img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-  }
-  .insight-content {
-    padding: 1.5rem;
-  }
-  .insight-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4a2c2a;
-  }
-  .insight-text {
-    color: #555;
-    margin-top: 0.5rem;
-  }
-  /* styles.css */
+  font-family: 'Cinzel', serif;
+}
+
+/* Header and Footer */
+.header-bar,
+.footer-bar {
+  background-color: #4a2c2a; /* Darker Brown */
+}
+
+/* Loader Styles */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff url('https://i.imgur.com/LLF5iyg.gif') no-repeat center center;
+  z-index: 9999;
+}
+
+/* Loader Spinner */
 .loader-spinner {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #3498db;
@@ -150,4 +33,123 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Button Animations */
+.btn-animate {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+.btn-animate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: skewX(-45deg);
+  transition: left 0.5s;
+}
+.btn-animate:hover::after {
+  left: 100%;
+}
+
+/* Hero Slider Styles */
+.hero-slider .swiper-pagination-bullet {
+  background: #FFC107; /* Adjust color to match your theme */
+}
+.hero-slider .swiper-button-next,
+.hero-slider .swiper-button-prev {
+  color: #fff;
+}
+
+/* Testimonial Styles */
+.testimonial-slide {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+.testimonial-slide::before {
+  content: '\f10d';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 3rem;
+  color: #FFC107;
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+}
+.testimonial-quote {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #4a2c2a;
+  margin-bottom: 1rem;
+}
+.testimonial-author {
+  font-weight: bold;
+  color: #4a2c2a;
+}
+
+/* Artisan Card Styles */
+.artisan-card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.artisan-card:hover {
+  transform: scale(1.05);
+}
+.artisan-photo {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.artisan-info {
+  padding: 1.5rem;
+}
+.artisan-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4a2c2a;
+}
+.artisan-bio {
+  color: #555;
+  margin-top: 0.5rem;
+}
+.artisan-social a {
+  color: #4a2c2a;
+  margin-right: 0.5rem;
+}
+.artisan-social a:hover {
+  color: #FFC107;
+}
+
+/* Insights Styles */
+.insight-item {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+.insight-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.insight-content {
+  padding: 1.5rem;
+}
+.insight-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4a2c2a;
+}
+.insight-text {
+  color: #555;
+  margin-top: 0.5rem;
 }
