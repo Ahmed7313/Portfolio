@@ -4,9 +4,9 @@
 
 Welcome to the Ancient Artifacts Portfolio! This project showcases my work, built using HTML, CSS, JavaScript, and Firebase for real-time data handling. This portfolio includes detailed information about the projects I have worked on and features a dynamic display of project details using Firebase Realtime Database.
 
-🔗 **Deployed Site:** [Ancient Artifacts Portfolio](http://your-deployed-site.com)
+🔗 **Deployed Site:** [Ancient Artifacts Portfolio]([http://your-deployed-site.com](https://ahmed7313.github.io/Portfolio/))
 
-📄 **Final Project Blog Article:** [Read about my project](http://your-blog-article-link.com)
+📄 **Final Project Blog Article:** [Read about my project]([http://your-blog-article-link.com](https://medium.com/@ahmedrabie7313/building-an-online-portfolio-my-alx-software-engineering-graduation-project-fa7f4b0f8e59))
 
 👤 **Author: [Ahmed Rabie](https://www.linkedin.com/in/ahmed-adel-rabie/)**
 
